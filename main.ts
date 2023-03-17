@@ -1,11 +1,8 @@
 let go = 0
-let go_b = 0
 let go_nage = 0
+let go_b = 0
 /**
  * Programme à Alicia
- */
-/**
- * Programme à Justin
  */
 /**
  * Programme à Lily
@@ -20,20 +17,17 @@ input.onLogoEvent(TouchButtonEvent.Touched, function () {
     }
     basic.clearScreen()
 })
-input.onLogoEvent(TouchButtonEvent.Released, function () {
-    go_b = 0
-})
 input.onButtonPressed(Button.A, function () {
     go_nage = 1
 })
 input.onSound(DetectedSound.Quiet, function () {
     go = 0
 })
-input.onLogoEvent(TouchButtonEvent.LongPressed, function () {
-    go_b = 1
-})
 input.onButtonPressed(Button.B, function () {
     go_nage = 0
+})
+input.onGesture(Gesture.Shake, function () {
+    go_b = 1
 })
 input.onLogoEvent(TouchButtonEvent.Pressed, function () {
     music.playMelody("D D F - D D F - ", 130)
@@ -52,6 +46,9 @@ input.onLogoEvent(TouchButtonEvent.Pressed, function () {
     music.playMelody("F F E E G G G G ", 500)
     music.stopAllSounds()
 })
+input.onGesture(Gesture.ScreenUp, function () {
+    go_b = 0
+})
 basic.forever(function () {
     if (go_b == 1) {
         servos.P0.setAngle(0)
@@ -63,6 +60,9 @@ basic.forever(function () {
         servos.P0.setAngle(0)
     }
 })
+/**
+ * Programme à Justin
+ */
 basic.forever(function () {
     if (go == 1) {
         servos.P0.setAngle(0)
